@@ -19,10 +19,25 @@
       "/Robot/drive/rearLeft/turnFeedback": "PIDController",
       "/Robot/drive/rearRight/driveFeedback": "PIDController",
       "/Robot/drive/rearRight/turnFeedback": "PIDController",
+      "/Robot/singleArm/measurementVisualizer/mech": "Mechanism2d",
+      "/Robot/singleArm/pid": "ProfiledPIDController",
+      "/Robot/singleArm/setpointVisualizer/mech": "Mechanism2d",
+      "/SmartDashboard/db single-arm": "Command",
+      "/SmartDashboard/df single-arm": "Command",
       "/SmartDashboard/drive dynamic backward": "Command",
       "/SmartDashboard/drive dynamic forward": "Command",
       "/SmartDashboard/drive quasistatic backward": "Command",
       "/SmartDashboard/drive quasistatic forward": "Command",
+      "/SmartDashboard/dynamic backward": "Command",
+      "/SmartDashboard/dynamic forward": "Command",
+      "/SmartDashboard/qb single-arm": "Command",
+      "/SmartDashboard/qf single-arm": "Command",
+      "/SmartDashboard/quasistatic backward": "Command",
+      "/SmartDashboard/quasistatic forward": "Command",
+      "/SmartDashboard/single-arm dynamic backward": "Command",
+      "/SmartDashboard/single-arm dynamic forward": "Command",
+      "/SmartDashboard/single-arm quasistatic backward": "Command",
+      "/SmartDashboard/single-arm quasistatic forward": "Command",
       "/SmartDashboard/turn dynamic backward": "Command",
       "/SmartDashboard/turn dynamic forward": "Command",
       "/SmartDashboard/turn quasistatic backward": "Command",
@@ -46,12 +61,32 @@
           "visible": true
         }
       },
-      "/SmartDashboard/drive dynamic forward": {
+      "/Robot/singleArm/measurementVisualizer/mech": {
         "window": {
           "visible": true
         }
       },
-      "/SmartDashboard/drive quasistatic forward": {
+      "/Robot/singleArm/setpointVisualizer/mech": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/db single-arm": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/df single-arm": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/qb single-arm": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/qf single-arm": {
         "window": {
           "visible": true
         }
@@ -82,10 +117,12 @@
               "open": true
             },
             "open": true
-          },
-          "open": true
+          }
         },
-        "open": true
+        "open": true,
+        "singleArm": {
+          "open": true
+        }
       },
       "Shuffleboard": {
         "open": true
@@ -94,5 +131,40 @@
   },
   "NetworkTables Info": {
     "visible": true
+  },
+  "Plot": {
+    "Plot <0>": {
+      "plots": [
+        {
+          "backgroundColor": [
+            0.0,
+            0.0,
+            0.0,
+            0.8500000238418579
+          ],
+          "height": 547,
+          "series": [
+            {
+              "color": [
+                0.2980392277240753,
+                0.44705885648727417,
+                0.6901960968971252,
+                1.0
+              ],
+              "id": "NT:/Robot/singleArm/setpoint"
+            },
+            {
+              "color": [
+                0.8666667342185974,
+                0.5176470875740051,
+                0.32156863808631897,
+                1.0
+              ],
+              "id": "NT:/Robot/singleArm/position"
+            }
+          ]
+        }
+      ]
+    }
   }
 }
