@@ -21,8 +21,6 @@ import org.sciborgs1155.lib.InputStream;
 import org.sciborgs1155.robot.Ports.OI;
 import org.sciborgs1155.robot.SingleArm.SingleArm;
 import org.sciborgs1155.robot.commands.Autos;
-import org.sciborgs1155.robot.drive.Drive;
-import org.sciborgs1155.robot.drive.DriveConstants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -37,13 +35,10 @@ public class Robot extends CommandRobot implements Logged {
   private final CommandXboxController driver = new CommandXboxController(OI.DRIVER);
 
   // SUBSYSTEMS
-  private final Drive drive = Drive.create();
   private final SingleArm singleArm = SingleArm.create();
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
-
-  @Log.NT private double speedMultiplier = Constants.FULL_SPEED;
 
   /** The robot contains subsystems, OI devices, and commands. */
   public Robot() {
@@ -74,7 +69,6 @@ public class Robot extends CommandRobot implements Logged {
         .deadband(Constants.DEADBAND, 1)
         .negate()
         .scale(maxSpeed)
-        .scale(() -> speedMultiplier)
         .signedPow(2)
         .rateLimit(maxRate);
   }
@@ -84,20 +78,6 @@ public class Robot extends CommandRobot implements Logged {
    * running on a subsystem.
    */
   private void configureSubsystemDefaults() {
-    drive.setDefaultCommand(
-        drive.drive(
-            createJoystickStream(
-                driver::getLeftX,
-                DriveConstants.MAX_SPEED.in(MetersPerSecond),
-                DriveConstants.MAX_ACCEL.in(MetersPerSecondPerSecond)),
-            createJoystickStream(
-                driver::getLeftY,
-                DriveConstants.MAX_SPEED.in(MetersPerSecond),
-                DriveConstants.MAX_ACCEL.in(MetersPerSecondPerSecond)),
-            createJoystickStream(
-                driver::getRightX,
-                DriveConstants.MAX_ANGULAR_SPEED.in(RadiansPerSecond),
-                DriveConstants.MAX_ANGULAR_ACCEL.in(RadiansPerSecond.per(Second)))));
 
     singleArm.setDefaultCommand(singleArm.goTo(() -> 0).withName("default command"));
   }
@@ -106,12 +86,6 @@ public class Robot extends CommandRobot implements Logged {
   private void configureBindings() {
     autonomous().whileTrue(new ProxyCommand(autos::get));
     FaultLogger.onFailing(f -> Commands.print(f.toString()));
-
-    driver
-        .leftBumper()
-        .or(driver.rightBumper())
-        .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
-        .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
 
     driver.x().toggleOnTrue(singleArm.goTo(() -> 3 * Math.PI / 4).withName("driver control"));
   }
