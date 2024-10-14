@@ -1,6 +1,8 @@
 package org.sciborgs1155.robot.SingleArm;
 
-public interface SingleArmIO extends AutoCloseable {
+import monologue.Logged;
+
+public interface SingleArmIO extends AutoCloseable, Logged {
   public void setVoltage(double voltage);
 
   /*

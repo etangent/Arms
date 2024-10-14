@@ -121,6 +121,9 @@
         },
         "open": true,
         "singleArm": {
+          "hardware": {
+            "open": true
+          },
           "open": true
         }
       },

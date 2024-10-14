@@ -79,7 +79,7 @@ public class Robot extends CommandRobot implements Logged {
    */
   private void configureSubsystemDefaults() {
 
-    singleArm.setDefaultCommand(singleArm.goTo(() -> 0).withName("default command"));
+    // singleArm.setDefaultCommand(singleArm.goTo(() -> 0).withName("default command"));
   }
 
   /** Configures trigger -> command bindings */
