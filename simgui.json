@@ -10,6 +10,8 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/Robot/autos": "String Chooser",
+      "/Robot/dblArm/measurementVisualizer/mech": "Mechanism2d",
+      "/Robot/dblArm/setpointVisualizer/mech": "Mechanism2d",
       "/Robot/drive/field2d": "Field2d",
       "/Robot/drive/frontLeft/driveFeedback": "PIDController",
       "/Robot/drive/frontLeft/turnFeedback": "PIDController",
@@ -44,7 +46,20 @@
       "/SmartDashboard/turn quasistatic forward": "Command"
     },
     "windows": {
+      "/Robot/dblArm/measurementVisualizer/mech": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/Robot/dblArm/setpointVisualizer/mech": {
+        "window": {
+          "visible": true
+        }
+      },
       "/Robot/drive/field2d": {
+        "bottom": 1476,
+        "height": 8.210550308227539,
+        "left": 150,
         "module- FL": {
           "style": "Line"
         },
@@ -57,19 +72,9 @@
         "module-RL": {
           "style": "Line"
         },
-        "window": {
-          "visible": true
-        }
-      },
-      "/Robot/singleArm/measurementVisualizer/mech": {
-        "window": {
-          "visible": true
-        }
-      },
-      "/Robot/singleArm/setpointVisualizer/mech": {
-        "window": {
-          "visible": true
-        }
+        "right": 2961,
+        "top": 79,
+        "width": 16.541748046875
       },
       "/SmartDashboard/db single-arm": {
         "window": {
@@ -96,6 +101,9 @@
   "NetworkTables": {
     "transitory": {
       "Robot": {
+        "dblArm": {
+          "open": true
+        },
         "drive": {
           "Pose2d##v_/Robot/drive/getPose": {
             "Rotation2d##v_rotation": {
@@ -123,8 +131,7 @@
         "singleArm": {
           "hardware": {
             "open": true
-          },
-          "open": true
+          }
         }
       },
       "Shuffleboard": {
@@ -176,7 +183,11 @@
             }
           ]
         }
-      ]
+      ],
+      "window": {
+        "name": "Single Arm",
+        "visible": false
+      }
     }
   }
 }

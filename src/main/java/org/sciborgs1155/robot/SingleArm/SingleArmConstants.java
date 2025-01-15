@@ -13,7 +13,7 @@ public class SingleArmConstants {
   public static final int GEARING = 120;
   public static final int THROUGHBORE_GEARING = 1;
   public static final int CURRENT_LIMIT = 50;
-  public static final Measure<Angle> MIN_ANGLE = Radians.of(-Math.PI/2);
+  public static final Measure<Angle> MIN_ANGLE = Radians.of(-Math.PI / 2);
   public static final Measure<Angle> MAX_ANGLE = Radians.of(3 * Math.PI / 2);
   public static final Measure<Angle> STARTING_ANGLE = Radians.of(0);
   public static final Measure<Velocity<Angle>> MAX_SPEED = RadiansPerSecond.of(3);

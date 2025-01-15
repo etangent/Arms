@@ -1,9 +1,6 @@
 package org.sciborgs1155.robot;
 
-import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.MetersPerSecondPerSecond;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
-import static edu.wpi.first.units.Units.Second;
+import static edu.wpi.first.units.Units.Seconds;
 import static edu.wpi.first.wpilibj2.command.button.RobotModeTriggers.*;
 
 import edu.wpi.first.wpilibj.DataLogManager;
@@ -14,10 +11,13 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import monologue.Annotations.Log;
 import monologue.Logged;
 import monologue.Monologue;
-import org.littletonrobotics.urcl.URCL;
+
+import static org.sciborgs1155.robot.DblArm.DblArmConstants.SIM_PERIOD;
+
 import org.sciborgs1155.lib.CommandRobot;
 import org.sciborgs1155.lib.FaultLogger;
 import org.sciborgs1155.lib.InputStream;
+import org.sciborgs1155.robot.DblArm.DblArm;
 import org.sciborgs1155.robot.Ports.OI;
 import org.sciborgs1155.robot.SingleArm.SingleArm;
 import org.sciborgs1155.robot.commands.Autos;
@@ -36,6 +36,7 @@ public class Robot extends CommandRobot implements Logged {
 
   // SUBSYSTEMS
   private final SingleArm singleArm = SingleArm.create();
+  private final DblArm dblArm = DblArm.create();
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
@@ -55,9 +56,9 @@ public class Robot extends CommandRobot implements Logged {
     addPeriodic(Monologue::updateAll, kDefaultPeriod);
     FaultLogger.setupLogging();
     addPeriodic(FaultLogger::update, 1);
+    addPeriodic(dblArm::update, SIM_PERIOD.in(Seconds));
 
     if (isReal()) {
-      URCL.start();
     } else {
       DriverStation.silenceJoystickConnectionWarning(true);
     }
